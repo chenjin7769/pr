@@ -1,0 +1,22 @@
+<!--搜索点击跳转也-->
+<ion-view view-title="烹饪">
+	<ion-content class="cont1">
+		<ion-list class="tab1List">
+			<ion-item collection-repeat="x in Data" ng-href="#/tab/content1/{{x.id}}">
+				<h4>{{x.title}}</h4>
+				<img ng-src="{{x.albums[0]}}" />
+				<p class="content">
+					{{x.tags}}
+				</p>
+			</ion-item>
+		</ion-list>
+		<!--上拉更多 ng-if="moreDataCanBeLoaded()"-->
+		<ion-infinite-scroll 
+			icon="ion-loading-c"  
+			ng-if="moreDataCanBeLoaded"
+			on-infinite="loadMore()"
+			distance="5%"
+			ng-bind="isShow">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

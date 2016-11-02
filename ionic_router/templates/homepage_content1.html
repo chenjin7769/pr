@@ -1,0 +1,25 @@
+<!--详情页-->
+<ion-view view-title="烹饪">
+	<ion-content class="cont1">
+		<div class="condiv1">
+
+			<h1 ng-bind="data.title"></h1>
+			<img ng-src="{{data.albums[0]}}" alt="" />
+			<div>
+				<b>介绍:</b>
+				<p ng-bind="data.imtro"></p>
+				<b>辅料:</b>
+				<p ng-bind="data.burden"></p>
+				<b>主料:</b>
+				<p ng-bind="data.ingredients"></p>
+				<b>烹饪步骤:</b>
+				<list ng-repeat="x in data.steps">
+					<img ng-src="{{x.img}}" alt="" />
+					<p>{{x.step}}</p>
+				</list>
+				<b>一道美味的&ensp;<i ng-bind="data.title"></i>&ensp;就做好</b>
+			</div>
+			
+		</div>
+	</ion-content>
+</ion-view>

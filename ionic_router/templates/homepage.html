@@ -1,0 +1,54 @@
+<!--首页内容-->
+<ion-view view-title="烹饪" class="index-tab1">
+	<ion-nav-buttons side="right">
+		<a class="button ion-android-more-vertical tab1A" ng-click="">
+		</a>
+	</ion-nav-buttons>
+	<ion-content class="stable-bg">
+		<!--下拉刷新-->
+		<ion-refresher
+			on-refresh="doRefresh()"
+			pulling-text="Pull to refresh..."
+			refreshing-text="刷新!"
+			refreshing-icon="ion-loading-b">
+		</ion-refresher>
+		<div ng-controller="MyCtrl" class="stable-bg">
+			<!--轮播图-->
+			<!--
+				e_id: '11',
+				img: 'img1.jpg',
+				cx: '粤菜'
+			-->
+			
+			<ion-slide-box does-continue=true slide-interval=2000 auto-play=true>
+				<ion-slide ng-repeat="itm in CooKs" ">
+					<a ng-href="#/tab/content2/{{itm.e_id}}">
+						<img ng-src="img/{{itm.img}}" alt=""/>
+					</a>					
+					<h3 ng-bind="itm.cx"></h3>
+				</ion-slide>
+			</ion-slide-box>
+		</div>
+		<!--轮播图下方的内容-->
+		<p class="tab1P">今日推荐</p>
+		<ion-list class="tab1List">
+			<ion-item collection-repeat="x in Data" ng-href="#/tab/content1/{{x.id}}">
+				<h4>{{x.title}}</h4>
+				<img ng-src="{{x.albums[0]}}" />
+				<p class="content">
+					{{x.tags}}
+				</p>
+			</ion-item>
+		</ion-list>
+		<!--上拉更多 ng-if="moreDataCanBeLoaded()"-->
+		<ion-infinite-scroll
+			icon="ion-loading-c"
+			ng-if="moreDataCanBeLoaded"
+			on-infinite="loadMore()"
+			distance="5%"
+			ng-bind="isShow">
+		</ion-infinite-scroll>
+
+	</ion-content>
+	</ion-content>
+</ion-view>
